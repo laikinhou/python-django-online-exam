@@ -4,10 +4,8 @@
 @create: 2020/9/6
 @description: 
 """
-import logging
 from django.db.models import Q
 from django.contrib.auth import authenticate
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status as HttpStatus
@@ -18,8 +16,7 @@ from rest_framework.mixins import RetrieveModelMixin
 from users.models import UserInfo, TblRole, TblPage, TblAction
 from users.serializers import LoginSerivalizer, RegisterSerivalizer, UserInfoSerivalizer
 from utils.enum import STUDENT
-
-LOG = logging.getLogger('request')
+from utils.logger import logger
 
 
 # Create your views here.
@@ -35,12 +32,12 @@ class LoginView(GenericAPIView):
         username = ser.data.get('username')
         password = ser.data.get('password')
 
-        ret = {'code': 'success', 'msg': ''}
+        ret = {'code': 0, 'msg': ''}
         try:
             user = authenticate(request, username=username, password=password)
             ret['msg'] = '登录成功'
             ret['data'] = user.token
-        except (UserInfo.DoesNotExist, UserInfo.MultipleObjectsReturned) as e:
+        except Exception as e:
             ret['msg'] = '用户名或密码错误'
 
         return Response(ret)
@@ -71,7 +68,7 @@ class RegisterView(GenericAPIView):
             user.is_active = True
             user.save()
             ret['msg'] = '注册成功'
-            LOG.info('用户: %s 注册成功', username)
+            logger.info('用户: %s 注册成功', username)
         else:
             ret['msg'] = '用户已注册'
 
@@ -79,7 +76,7 @@ class RegisterView(GenericAPIView):
 
 
 class UserInfoViewset(RetrieveModelMixin, GenericViewSet):
-    queryset = UserInfo.objects.all()
+    queryset = UserInfo.objects.all().order_by('-create_time')
     serializer_class = UserInfoSerivalizer
 
     def get_object(self):
@@ -87,6 +84,7 @@ class UserInfoViewset(RetrieveModelMixin, GenericViewSet):
 
 
 class InfoView(GenericAPIView):
+    queryset = UserInfo.objects.all().order_by('-create_time')
     serializer_class = UserInfoSerivalizer
 
     def get(self, request, *args, **kwargs):
@@ -137,6 +135,6 @@ class InfoView(GenericAPIView):
             result['role']['permissions'] = permissions
             ret['data'] = result
         except Exception as e:
-            LOG.exception(e)
+            logger.exception(e)
 
         return Response(ret)

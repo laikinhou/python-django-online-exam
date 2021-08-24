@@ -1,10 +1,13 @@
+from uuid import uuid4
+
 from django.db import models
 
 
 class TblQuestion(models.Model):
+    id = models.CharField(max_length=40, default=uuid4, primary_key=True)
     name = models.TextField(verbose_name='题目的名字', help_text='题目的名字')
     score = models.IntegerField(default=0, verbose_name='题目的分数', help_text='题目的分数')
-    creator_id = models.CharField(max_length=32, verbose_name='题目创建者的用户id', help_text='题目创建者的用户id')
+    creator_id = models.CharField(max_length=40, verbose_name='题目创建者的用户id', help_text='题目创建者的用户id')
     level_id = models.IntegerField(default=0, verbose_name='题目难易度级别', help_text='题目难易度级别')
     type_id = models.IntegerField(default=0, verbose_name='题目的类型，比如单选、多选、判断等', help_text='题目的类型，比如单选、多选、判断等')
     category_id = models.IntegerField(default=0, verbose_name='题目的类型，比如数学、英语、政治等', help_text='题目的类型，比如数学、英语、政治等')
@@ -27,6 +30,7 @@ class TblQuestionType(models.Model):
 
 
 class TblQuestionOption(models.Model):
+    id = models.CharField(max_length=40, default=uuid4, primary_key=True)
     content = models.CharField(max_length=512, verbose_name='选项的内容', help_text='选项的内容')
     description = models.CharField(max_length=512, blank=True, null=True, verbose_name='选项的额外描述，可以用于题目答案解析', help_text='选项的额外描述，可以用于题目答案解析')
 

@@ -29,9 +29,9 @@ if not LOG_PATH.exists():
 SECRET_KEY = 'ys&52n6c@#4b%r1s&_otkj%xjz612$2luac4k0x+q(sq4ht)8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -59,13 +59,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'backend.middleware.ExceptionMiddleware'
+    'django.middleware.gzip.GZipMiddleware',
+    'backend.middleware.CustomMiddleware'
 ]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME', 'demo'),
+        'NAME': os.environ.get('DB_NAME', 'exam1'),
         'USER': os.environ.get('DB_USER', 'root'),
         'PASSWORD': os.environ.get('DB_PASSWD', 'aA111111'),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
@@ -147,44 +148,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = ['*']
 CORS_ALLOW_HEADERS = ['*']
-
-# 日志系统
-
-# 日志配置
-LOGGING = {
-    "version": 1,
-    # True表示禁用logger
-    "disable_existing_loggers": False,
-    'formatters': {
-        'default': {
-            'format': '%(levelno)s %(module)s %(asctime)s %(message)s ',
-            'datefmt': '%Y-%m-%d %A %H:%M:%S',
-        },
-    },
-
-    'handlers': {
-        'request_handlers': {
-            'level': 'DEBUG',
-            # 日志文件指定为5M, 超过5m重新命名，然后写入新的日志文件
-            'class': 'logging.handlers.RotatingFileHandler',
-            # 指定文件大小
-            'maxBytes': 5 * 1024,
-            # 指定文件地址
-            'filename': '%s/request.log' % LOG_PATH,
-            'formatter': 'default'
-        }
-    },
-    'loggers': {
-        'request': {
-            'handlers': ['request_handlers'],
-            'level': 'INFO'
-        }
-    },
-
-    'filters': {
-        # 过滤器
-    }
-}
 
 # 生成token的加密算法
 ALGORITHM: str = "HS256"

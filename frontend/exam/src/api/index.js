@@ -15,24 +15,24 @@ const api = {
 
   // 考试的接口
   ExamQuestionList: '/exam/question/list',
-  ExamQuestionAll: '/exam/question/all',
+  ExamQuestionAll: '/question/question/',
   ExamQuestionUpdate: '/exam/question/update',
-  ExamQuestionSelection: '/exam/question/selection',
+  ExamQuestionSelection: '/question/selection',
   ExamQuestionCreate: '/exam/question/create',
   ExamList: '/exam/list',
-  ExamAll: '/exam/all',
+  ExamAll: '/exam/exam/all/',
   // 获取问题列表，按照单选、多选和判断进行分类
-  ExamQuestionTypeList: '/exam/question/type/list',
-  ExamCreate: '/exam/create',
+  ExamQuestionTypeList: '/question/type/list',
+  ExamCreate: '/exam/exam/',
   ExamUpdate: '/exam/update',
-  ExamCardList: '/exam/card/list',
+  ExamCardList: '/exam/exam/list/',
   // 获取考试详情
-  ExamDetail: '/exam/detail/',
+  ExamDetail: '/exam/exam/',
   // 获取考试详情
-  QuestionDetail: '/exam/question/detail/',
+  QuestionDetail: '/question/question/',
   // 交卷
   FinishExam: '/exam/finish/',
-  ExamRecordList: '/exam/record/list',
-  recordDetail: '/exam/record/detail/'
+  ExamRecordList: '/exam/record/',
+  recordDetail: '/exam/record/'
 }
 export default api

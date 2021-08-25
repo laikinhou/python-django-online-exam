@@ -1,4 +1,4 @@
-# django-drf-online-exam
+# python-django-online-exam
 本项目 fork 自 [spring-boot-online-exam](https://github.com/19920625lsg/spring-boot-online-exam) 项目，原项目使用 springboot + vue实现，我将后端改为 django-drf，为方便学习 Python 的朋友提供一个示例，主要适配后端，前端对接口做了一些修改。
 
 > 在线Demo预览，http://129.211.88.191 ，账户分别是admin、teacher、student，密码是admin123，这是原作者提供的在线Demo
@@ -36,6 +36,9 @@
   
   > 进入 backend\exam 目录下，执行 `Pipenv install`，注意我用的是 python3.8，如果你用的是其他版本，请将 Pipfile 文件中的版本号改一下
   > 执行完上面的安装命令后，再执行 `Pipenv run dev`，就启动了后端，在浏览器端访问 http://localhost:9527/docs 即可看到后端的 API 界面
+
+  ![API 文档](doc/images/api.png)
+
 + 4.启动前端
   + 进入到前端代码路径 `cd frontend/exam/`
   + 安装依赖 `yarn install`

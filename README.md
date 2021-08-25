@@ -25,7 +25,7 @@
 
 + 1.下载代码
   ```shell
-  git clone git@github.com:xingxingzaixian/django-drf-online-exam.git
+  git clone git@github.com:xingxingzaixian/python-django-online-exam.git
   ```
 + 2.初始化环境
   

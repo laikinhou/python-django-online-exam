@@ -22,8 +22,11 @@ from django.views.static import serve
 
 urlpatterns = [
     path('', RedirectView.as_view(url='docs')),
-    path('docs/', include_docs_urls(title='API 文档', description='开发接口文档', authentication_classes=(),
-                                    permission_classes=())),
+    path('docs/', include_docs_urls(
+                    title='在线考试系统',
+                    description='在线考试系统 API 接口文档',
+                    authentication_classes=(),
+                    permission_classes=())),
     path('api/user/', include('users.urls')),
     path('api/exam/', include('exam.urls')),
     path('api/question/', include('question.urls'))

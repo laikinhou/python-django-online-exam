@@ -1,0 +1,39 @@
+{
+    "editor.formatOnSave": true,
+    "css.validate": false,
+    "less.validate": false,
+    "editor.tabSize": 2,
+    "prettier.printWidth": 80,
+    "javascript.validate.enable": false,
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[css]": {
+      "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/*.log": true,
+      "**/*.log*": true,
+      "**/dist": true,
+      "**/.git": true,
+      "**/.gitignore": true,
+      "**/.svn": true,
+      "**/.DS_Store": true,
+      "**/.idea": true,
+      "**/.vscode": false,
+      "**/yarn.lock": true,
+      "**/tmp": true,
+      "out": true,
+      "dist": true,
+      "node_modules": true,
+      "yarn-error.log": true,
+      "**/.yarn": true
+    }
+}

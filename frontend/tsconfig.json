@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
+    // 用于设置模块名到基于baseUrl的路径映射
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "noUnusedLocals": false, // 检查只声明、未使用的局部变量(只提示不报错)
+    "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错)
+    "typeRoots":["node_modules/@types", "node_modules/element-plus", "src/types"], // 将这些文件夹下的包自动导入 TypeScript 声明
+    "types": []
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

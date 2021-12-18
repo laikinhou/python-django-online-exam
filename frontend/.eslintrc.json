@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "vue/setup-compiler-macros": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "import/extensions": [
+            "error",
+            "never",
+            { 
+                "vue": "always"
+            } 
+        ],
+        "import/no-unresolved": "off",
+        "vue/multi-word-component-names": "off",
+        "consistent-return": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        "no-param-reassign": ["error", { "props": false }],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "object-curly-newline": ["error", { "multiline": true }],
+        "vue/no-multiple-template-root": "off"
+    }    
+}

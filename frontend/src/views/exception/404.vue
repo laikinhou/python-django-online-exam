@@ -1,7 +1,7 @@
 <template>
   <div class="notfound">
     <span>{{ countDown }}秒后跳转到首页</span>
-    Page Not Found
+    <p>Page Not Found</p>
   </div>
 </template>
 
@@ -33,17 +33,26 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .notfound {
   margin: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 17.0667vw;
-  font-weight: 900;
+
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(#34d399, #3b82f6);
-  text-shadow: 1.3333vw 0.6667vw 2vw slategrey;
+
+  span {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 70px;
+    font-weight: 900;
+    text-shadow: 1.3333vw 0.6667vw 2vw slategrey;
+  }
 }
 </style>

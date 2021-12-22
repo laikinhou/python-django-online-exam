@@ -10,7 +10,7 @@ const questionRoutes: AppRouteRecordRaw[] = [
     redirect: '/question/list',
     children: [
       {
-        path: '/question/list',
+        path: 'list',
         name: 'List',
         component: () => import('@/views/question/Index.vue'),
         meta: { title: '问题列表' },

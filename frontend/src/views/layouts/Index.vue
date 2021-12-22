@@ -3,7 +3,10 @@
     <el-header>
       <Header></Header>
     </el-header>
-    <el-main>
+    <el-main class="container">
+      <!-- 面包屑 -->
+      <BreadCrumb></BreadCrumb>
+
       <RouterView />
     </el-main>
     <el-footer>
@@ -18,11 +21,13 @@
 
 <script setup lang="ts">
 import Header from './models/Header.vue';
+import BreadCrumb from './models/BreadCrumb.vue';
 </script>
 
 <style setup lang="less">
 .el-container {
   height: 100vh;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 

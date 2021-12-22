@@ -30,7 +30,7 @@ class LoginView(GenericAPIView):
         password = ser.data.get('password')
 
         ret = ''
-        status = HttpStatus.HTTP_400_BAD_REQUEST
+        status = HttpStatus.HTTP_401_UNAUTHORIZED
         try:
             user = authenticate(request, username=username, password=password)
             ret = user.token

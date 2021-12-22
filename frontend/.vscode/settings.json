@@ -4,6 +4,7 @@
     "less.validate": false,
     "editor.tabSize": 2,
     "prettier.printWidth": 80,
+    "px2xx.width": 1024,
     "javascript.validate.enable": false,
     "[vue]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"

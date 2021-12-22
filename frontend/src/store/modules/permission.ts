@@ -29,7 +29,6 @@ const usePermissionStore = defineStore({
           }
         }
       });
-      console.log('setRoutes', routes);
     },
 
     getAsyncRoutes(): Promise<AppRouteRecordRaw[]> {
@@ -44,7 +43,7 @@ const usePermissionStore = defineStore({
         return null;
       }
 
-      let item: RouteInfo = {
+      const item: RouteInfo = {
         title: route.meta.title as string || '',
         icon: route.meta.icon as string || '',
         path: route.path,
@@ -62,10 +61,7 @@ const usePermissionStore = defineStore({
         });
 
         // 如果只有一个子路由，则设置为 item
-        if (children.length === 1) {
-          const [child] = children;
-          item = child;
-        } else {
+        if (children.length !== 1) {
           item.children = children;
         }
       }

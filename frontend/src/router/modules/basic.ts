@@ -18,14 +18,14 @@ const basicRoutes: AppRouteRecordRaw[] = [
     path: '/',
     name: 'Home',
     component: Layout,
-    meta: { title: '首页', ignoreAuth: true, hideMenu: true },
+    meta: { hideMenu: true },
     redirect: '/dashboard',
     children: [
       {
-        path: '/dashboard',
+        path: 'dashboard',
         name: 'DashBoard',
         component: () => import('@/views/Home.vue'),
-        meta: { title: '首页', ignoreAuth: true, hideMenu: true },
+        meta: { title: '首页', hideMenu: true },
       },
     ],
   },

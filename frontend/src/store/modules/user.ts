@@ -1,37 +1,84 @@
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
 import { store } from '../index';
-import { UserInfo } from '../types';
+import { UserStore } from '../types';
+import userLoginApi from '@/api/common/login';
+import { UserInfo } from '@/api/user/types';
+import getUserInfoApi from '@/api/user';
 
 const useUserStore = defineStore({
   id: 'user',
-  state: (): UserInfo => ({
-    username: '',
+  state: (): UserStore => ({
+    userInfo: {
+      username: '',
+      email: '',
+      nickname: '',
+      avatar: '',
+      description: '',
+      telephone: '',
+    },
     token: '',
   }),
   getters: {
     userToken(): string {
-      return this.token;
+      const storageToken = useStorage(import.meta.env.VITE_AUTH_TOKEN as string, this.token);
+      return storageToken.value;
     },
 
-    userName(): string {
-      return this.username;
+    userInfos(): UserInfo {
+      return this.userInfo;
     },
   },
   actions: {
     hasToken(): boolean {
-      if (!this.token) {
-        return false;
-      }
-
-      return this.token !== '';
+      const storageToken = useStorage(import.meta.env.VITE_AUTH_TOKEN as string, this.token);
+      this.token = storageToken.value;
+      return !!this.token;
     },
 
     setToken(token: string): void {
+      const storageToken = useStorage(import.meta.env.VITE_AUTH_TOKEN as string, token);
+      storageToken.value = token;
       this.token = token;
     },
 
-    setUsername(username: string): void {
-      this.username = username;
+    async userLogin(username: string, password: string): Promise<boolean> {
+      try {
+        const token = await userLoginApi({ username, password });
+        this.setToken(token);
+        return this.hasToken();
+      } catch (e) {
+        return false;
+      }
+    },
+
+    userLogout(): void {
+      this.setToken('');
+      this.clearUserInfo();
+    },
+
+    setUserInfo(): void {
+      getUserInfoApi().then((resp: UserInfo) => {
+        this.userInfo = {
+          username: resp.username,
+          email: resp.email,
+          nickname: resp.nickname,
+          avatar: resp.avatar,
+          description: resp.description,
+          telephone: resp.telephone,
+        };
+      });
+    },
+
+    clearUserInfo(): void {
+      this.userInfo = {
+        username: '',
+        email: '',
+        nickname: '',
+        avatar: '',
+        description: '',
+        telephone: '',
+      };
     },
   },
 });

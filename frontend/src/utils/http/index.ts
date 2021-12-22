@@ -1,10 +1,9 @@
-import Axios, {
-  AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError,
-} from 'axios';
+import Axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { useRouter } from 'vue-router';
 import { httpConfig } from '@/utils/http/types';
 import { LOGIN_URL } from '@/router/types';
 import useUserStoreWithOut from '@/store/modules/user';
+import { errorMessage } from '@/utils/message';
 
 class AxiosHttp {
   private axiosInstance: AxiosInstance;
@@ -22,7 +21,7 @@ class AxiosHttp {
         const userStore = useUserStoreWithOut();
         // 将 Token 添加到 header 中
         if (userStore.hasToken() && config.headers) {
-          config.headers[import.meta.env.VITE_AUTH_TOKEN as string] = userStore.userToken;
+          config.headers[import.meta.env.VITE_AUTH_TOKEN as string] = `JWT ${userStore.userToken}`;
         }
         return config;
       },
@@ -48,11 +47,17 @@ class AxiosHttp {
   // 异常请求处理
   static errorHandler(status: number, message?: string): void {
     const router = useRouter();
+    const userStore = useUserStoreWithOut();
     switch (status) {
       case 401: // 未登录
       case 403: {
         // 跳转到登录页面，并删除 Token 记录
+        userStore.userLogout();
         router.push({ path: LOGIN_URL });
+        break;
+      }
+      case 500: {
+        errorMessage(message || '服务器错误');
         break;
       }
       default: {

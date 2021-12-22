@@ -6,23 +6,7 @@
     text-color="gainsboro"
     active-text-color="#409eff"
   >
-    <template v-for="(item, index) in routes">
-      <el-sub-menu
-        v-if="item.children && item.children.length > 0"
-        :key="index"
-        :index="index.toString()"
-      >
-        <template #title>
-          <i :class="item.icon"></i>
-          <span>{{ item.title }}</span>
-        </template>
-        <MenuItem :routes="item.children" :index="index.toString()"></MenuItem>
-      </el-sub-menu>
-      <el-menu-item v-else :key="item.path" :index="item.path">
-        <i :class="item.icon"></i>
-        <router-link :to="item.path">{{ item.title }}</router-link>
-      </el-menu-item>
-    </template>
+    <MenuItem :items="routes"></MenuItem>
   </el-menu>
 </template>
 
@@ -40,16 +24,5 @@ const routes = computed<RouteInfo[]>(() => permissionStore.menus);
 <style lang="less" scoped>
 .el-menu {
   border: 0;
-}
-
-li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-:deep(.el-menu--horizontal li.el-menu-item:not(.is-disabled):hover) {
-  background-color: #143453 !important;
 }
 </style>

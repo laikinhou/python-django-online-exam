@@ -43,6 +43,7 @@ class RouteView {
     });
 
     this.routeList = routeModuleList;
+    console.log('routeModuleList', routeModuleList);
     return routeModuleList;
   };
 
@@ -85,6 +86,9 @@ class RouteView {
         next({ path: LOGIN_URL });
         return;
       }
+
+      // TODO: 获取用户信息
+      userStore.setUserInfo();
 
       // TODO: 这里可以增加权限认证判断
 

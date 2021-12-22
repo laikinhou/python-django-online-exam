@@ -1,5 +1,7 @@
-export interface UserInfo {
-  username: string;
+import { UserInfo } from '@/api/user/types';
+
+export interface UserStore {
+  userInfo: UserInfo;
   token: string;
 }
 

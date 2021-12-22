@@ -6,12 +6,12 @@ const examRoutes: AppRouteRecordRaw[] = [
     path: '/examList',
     name: 'ExamList',
     component: Layout,
-    meta: { title: '考试列表', icon: 'el-icon-menu' },
-    redirect: '/examList/list',
+    meta: { title: '考试卡片', icon: 'el-icon-menu' },
+    redirect: '/examList/view',
     children: [
       {
-        path: '/examList/list',
-        name: 'List',
+        path: 'view',
+        name: 'View',
         component: () => import('@/views/exam/Index.vue'),
         meta: { title: '考试列表' },
       },
@@ -25,10 +25,25 @@ const examRoutes: AppRouteRecordRaw[] = [
     redirect: '/examDetail/detail',
     children: [
       {
-        path: '/examDetail/detail',
+        path: 'detail',
         name: 'Detail',
         component: () => import('@/views/exam/Manager.vue'),
-        meta: { title: '考试管理' },
+        meta: { title: '管理列表' },
+      },
+    ],
+  },
+  {
+    path: '/userExam',
+    name: 'Exam',
+    component: Layout,
+    meta: { title: '我的考试', icon: 'el-icon-menu' },
+    redirect: '/examDetail/detail',
+    children: [
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/exam/Manager.vue'),
+        meta: { title: '我的考试' },
       },
     ],
   },

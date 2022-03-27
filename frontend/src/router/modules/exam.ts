@@ -6,7 +6,7 @@ const examRoutes: AppRouteRecordRaw[] = [
     path: '/examList',
     name: 'ExamList',
     component: Layout,
-    meta: { title: '考试卡片', icon: 'el-icon-menu' },
+    meta: { title: '考试卡片', icon: 'el-icon-menu', rank: 1 },
     redirect: '/examList/view',
     children: [
       {
@@ -21,7 +21,7 @@ const examRoutes: AppRouteRecordRaw[] = [
     path: '/examDetail',
     name: 'ExamDetail',
     component: Layout,
-    meta: { title: '考试管理', icon: 'el-icon-menu' },
+    meta: { title: '考试管理', icon: 'el-icon-menu', rank: 3 },
     redirect: '/examDetail/detail',
     children: [
       {

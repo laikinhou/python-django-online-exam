@@ -1,3 +1,5 @@
+本项目使用的前端技术比较老，因此**不再维护**了，创建了新项目使用Vue3.2+TypeScript+Element-Plus完全重构前端，新项目地址：[django-vue3.2-online-exam](https://github.com/xingxingzaixian/django-vue3.2-online-exam)，目前正在重构中，功能并不晚上，但是会持续开发，请有需要的同学关注新项目。
+
 # python-django-online-exam
 本项目 fork 自 [spring-boot-online-exam](https://github.com/19920625lsg/spring-boot-online-exam) 项目，原项目使用 springboot + vue实现，我将后端改为 django-drf，为方便学习 Python 的朋友提供一个示例，主要适配后端，前端对接口做了一些修改。
 

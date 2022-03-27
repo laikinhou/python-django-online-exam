@@ -21,12 +21,24 @@
         </div>
       </div>
     </el-card>
+    <el-pagination
+      v-show="pagination.total > 0"
+      v-model:currentPage="pagination.currentPage"
+      layout="prev, pager, next"
+      :page-count="Math.ceil(pagination.total / pagination.pageSize)"
+      :total="pagination.total"
+      :hide-on-single-page="true"
+      @onCurrentChange="handlePageChange"
+    >
+    </el-pagination>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { ExamList } from '@/types/common';
+import { errorMessage } from '@/utils/message';
+import getExamListApi from '@/api/exam';
 
 const examList = reactive<ExamList[]>([
   {
@@ -57,6 +69,34 @@ const examList = reactive<ExamList[]>([
     description: '这是一个考试描述',
   },
 ]);
+
+const pagination = reactive({
+  currentPage: 1,
+  pageSize: 12,
+  total: 0,
+});
+
+const updateData = async (): Promise<void> => {
+  getExamListApi({
+    pageNo: pagination.currentPage,
+    pageSize: pagination.pageSize,
+  })
+    .then((res) => {
+      pagination.total = res.cout;
+      examList.splice(0, examList.length, ...res.results);
+    })
+    .catch(() => {
+      errorMessage('获取考试列表失败');
+    });
+};
+
+const handlePageChange = (): void => {
+  updateData();
+};
+
+onMounted(() => {
+  updateData();
+});
 </script>
 
 <style lang="less" scoped>
@@ -71,6 +111,7 @@ const examList = reactive<ExamList[]>([
 }
 
 .list {
+  position: relative;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +120,12 @@ const examList = reactive<ExamList[]>([
     width: 24%;
     margin-bottom: 10px;
     margin-right: 1%;
+  }
+
+  .el-pagination {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
   }
 }
 

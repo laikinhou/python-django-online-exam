@@ -31,3 +31,6 @@ div.home i {
   margin-right: 10px;
   color: bisque;
 }
+.invalid {
+  border: 1px solid red;
+}

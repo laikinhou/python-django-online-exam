@@ -26,23 +26,7 @@ import BreadCrumb from './models/BreadCrumb.vue';
 
 <style setup lang="less">
 .el-container {
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .header {
-    height: 2.9297vw;
-    overflow: hidden;
-  }
-
-  .el-main {
-    flex: 1;
-  }
-
-  .el-footer {
-    height: 1.9531vw;
-  }
+  height: 100%;
 }
 
 .foot {

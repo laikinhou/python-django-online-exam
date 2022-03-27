@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core';
 import { store } from '../index';
 import { UserStore } from '../types';
 import userLoginApi from '@/api/common/login';
-import { UserInfo } from '@/api/user/types';
+import { UserInfo } from '@/types/common';
 import getUserInfoApi from '@/api/user';
 
 const useUserStore = defineStore({
@@ -31,9 +31,13 @@ const useUserStore = defineStore({
   },
   actions: {
     hasToken(): boolean {
+      if (this.token) {
+        return true;
+      }
+
       const storageToken = useStorage(import.meta.env.VITE_AUTH_TOKEN as string, this.token);
       this.token = storageToken.value;
-      return !!this.token;
+      return this.token !== '';
     },
 
     setToken(token: string): void {
@@ -46,6 +50,7 @@ const useUserStore = defineStore({
       try {
         const token = await userLoginApi({ username, password });
         this.setToken(token);
+        console.log(token);
         return this.hasToken();
       } catch (e) {
         return false;

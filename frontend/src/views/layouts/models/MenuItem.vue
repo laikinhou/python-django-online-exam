@@ -1,21 +1,24 @@
 <template>
-  <template v-for="(item, i) in items">
-    <el-sub-menu
-      v-if="item.children && item.children.length > 0"
-      :key="i"
-      :index="menuIndex(i)"
-    >
-      <template #title>
+  <!-- 不加 div 标签包裹会报警告 -->
+  <div style="display: flex">
+    <template v-for="(item, i) in items" :key="i">
+      <el-sub-menu
+        v-if="item.children && item.children.length > 0"
+        :key="i"
+        :index="menuIndex(i)"
+      >
+        <template #title>
+          <i :class="item.icon"></i>
+          <span>{{ item.title }}</span>
+        </template>
+        <MenuItem :items="item.children" :index="menuIndex(i)"></MenuItem>
+      </el-sub-menu>
+      <el-menu-item v-else :key="item.path" :index="menuIndex(i)">
         <i :class="item.icon"></i>
-        <span>{{ item.title }}</span>
-      </template>
-      <MenuItem :items="item.children" :index="menuIndex(i)"></MenuItem>
-    </el-sub-menu>
-    <el-menu-item v-else :key="item.path" :index="menuIndex(i)">
-      <i :class="item.icon"></i>
-      <router-link :to="item.path">{{ item.title }}</router-link>
-    </el-menu-item>
-  </template>
+        <router-link :to="item.path">{{ item.title }}</router-link>
+      </el-menu-item>
+    </template>
+  </div>
 </template>
 
 <script setup lang="ts">

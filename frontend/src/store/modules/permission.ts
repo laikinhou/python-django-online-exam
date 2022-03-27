@@ -18,16 +18,16 @@ const usePermissionStore = defineStore({
       routes.forEach((route) => {
         const item = self.parseRoute(route);
         if (item) {
-          // 如果路由需要排序，则按照 rank 排序（目前只针对一级路由）
-          if (route.meta.rank) {
-            const rank = route.meta.rank as number;
-            if (rank < self.routes.length && rank >= 0) {
-              self.routes.splice(rank, 0, item);
-            }
-          } else {
-            self.routes.push(item);
-          }
+          self.routes.push(item);
         }
+      });
+
+      // 路由按照 rank 配置排序
+      self.routes.sort((a, b) => {
+        if (a.rank && b.rank) {
+          return a.rank - b.rank;
+        }
+        return 0;
       });
     },
 
@@ -60,8 +60,15 @@ const usePermissionStore = defineStore({
           }
         });
 
-        // 如果只有一个子路由，则设置为 item
+        // 如果只有一个子路由，则抛弃之
         if (children.length !== 1) {
+          // 路由按照 rank 配置排序
+          children.sort((a, b) => {
+            if (a.rank && b.rank) {
+              return a.rank - b.rank;
+            }
+            return 0;
+          });
           item.children = children;
         }
       }

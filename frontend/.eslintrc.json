@@ -6,7 +6,7 @@
         "vue/setup-compiler-macros": true
     },
     "extends": [
-        "plugin:vue/essential",
+        "plugin:vue/vue3-essential",
         "airbnb-base"
     ],
     "parserOptions": {
@@ -47,6 +47,9 @@
         "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "object-curly-newline": ["error", { "multiline": true }],
-        "vue/no-multiple-template-root": "off"
+        "vue/no-multiple-template-root": "off",
+        "func-call-spacing": "off",
+        "no-spaced-func": "off",
+        "eslint-disable-next-line": "off"
     }    
 }

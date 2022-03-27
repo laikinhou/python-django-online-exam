@@ -1,10 +1,13 @@
+/* eslint-disable arrow-body-style */
 import http from '@/utils/http/index';
-import { ExamList } from '@/types/common';
+import { PageList, ExamList, SearchPageSize } from '@/types/common';
 
 /**
  * 登录
  */
 
-const getExamListApi = async (): Promise<ExamList[]> => http.get<ExamList[]>({ url: '/api/exam/exam/' });
+const getExamListApi = async (pageParam: SearchPageSize): Promise<PageList<ExamList>> => {
+  return http.get<PageList<ExamList>>({ url: '/api/exam/exam/', params: pageParam });
+};
 
 export default getExamListApi;

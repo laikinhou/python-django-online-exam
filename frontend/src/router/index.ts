@@ -43,7 +43,6 @@ class RouteView {
     });
 
     this.routeList = routeModuleList;
-    console.log('routeModuleList', routeModuleList);
     return routeModuleList;
   };
 

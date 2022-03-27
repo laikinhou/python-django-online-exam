@@ -4,3 +4,4 @@ src/main/resources/public
 target/
 dist/
 .venv/
+apps/*/migrations

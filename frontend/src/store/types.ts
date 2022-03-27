@@ -1,4 +1,4 @@
-import { UserInfo } from '@/api/user/types';
+import { UserInfo } from '@/types/common';
 
 export interface UserStore {
   userInfo: UserInfo;

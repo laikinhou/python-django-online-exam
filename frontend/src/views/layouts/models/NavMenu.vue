@@ -1,13 +1,15 @@
 <template>
-  <el-menu
-    mode="horizontal"
-    :unique-opened="true"
-    background-color="transparent"
-    text-color="gainsboro"
-    active-text-color="#409eff"
-  >
-    <MenuItem :items="routes"></MenuItem>
-  </el-menu>
+  <el-scrollbar>
+    <el-menu
+      mode="horizontal"
+      :unique-opened="true"
+      background-color="transparent"
+      text-color="gainsboro"
+      active-text-color="#409eff"
+    >
+      <MenuItem :items="routes"></MenuItem>
+    </el-menu>
+  </el-scrollbar>
 </template>
 
 <script setup lang="ts">

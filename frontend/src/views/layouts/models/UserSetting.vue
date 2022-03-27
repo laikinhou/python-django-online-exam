@@ -3,7 +3,9 @@
     <el-dropdown>
       <span>
         <i class="iconfont icon-yonghu1"></i>
-        {{ userStore.userInfo.nickname || '未登录' }}
+        {{
+          userStore.userInfo.nickname || userStore.userInfo.username || '未登录'
+        }}
       </span>
       <template #dropdown>
         <el-dropdown-menu>

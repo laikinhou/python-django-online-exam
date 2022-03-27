@@ -6,7 +6,7 @@ const questionRoutes: AppRouteRecordRaw[] = [
     path: '/question',
     name: 'Question',
     component: Layout,
-    meta: { title: '问题列表', icon: 'el-icon-menu' },
+    meta: { title: '问题列表', icon: 'el-icon-menu', rank: 2 },
     redirect: '/question/list',
     children: [
       {
